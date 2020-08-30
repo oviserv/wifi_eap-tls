@@ -1,0 +1,56 @@
+version: "3"
+
+networks:
+  radiusnet:
+    external: false
+
+services:
+  prepare_radiusd:
+    image: radiusimg
+    build:
+      context: ./docker/radiusd
+      dockerfile: Dockerfile
+      args:
+        - TZ
+        - RADIUS_HOST
+    environment:
+      - RADIUS_IP
+      - COUNTRYNAME
+      - LOCALITYNAME
+      - CA_LIFETIME
+      - CRL_LIFETIME
+      - HOST_CERT_LIFETIME
+    restart: "no"
+    entrypoint: "./managecerts.sh"
+    volumes:
+      - ./backup:/backup
+      - ./provision:/provision
+      - raddb:/etc/raddb
+
+  radiusd:
+    image: radiusimg
+    depends_on:
+      - prepare_radiusd
+    environment:
+      - RADIUS_IP
+      - COUNTRYNAME
+      - LOCALITYNAME
+      - CA_LIFETIME
+      - CRL_LIFETIME
+      - HOST_CERT_LIFETIME
+    user: "radius:radius"
+    restart: always
+    networks:
+      - radiusnet
+    ports:
+      - "${RADIUS_IP}:1812:1812/udp"
+    entrypoint: "./start.sh"
+    volumes:
+      - ./backup:/backup
+      - ./provision:/provision      
+      - raddb:/etc/raddb
+
+volumes:
+  raddb:
+    driver: local
+
