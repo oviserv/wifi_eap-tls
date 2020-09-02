@@ -18,5 +18,5 @@ if [ "${ANSWER}" != "${ANSWER#[Yy]}" ] ;then
     /usr/local/bin/docker-compose down --rmi all
     /bin/rm -rf ./backup/*
     /bin/rm -rf ./provision/*
-    /usr/bin/docker volume rm freeradius_raddb
+    /usr/bin/docker volume rm wifi_eap_tls_raddb
 fi
