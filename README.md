@@ -3,5 +3,25 @@ Wifi is nearly everywhere and adequate security is important. User friendly and 
 
 A complete setup consists of the following elements:
 - a Wifi client, e.g. a Windows 10 laptop connecting to a Wifi network
-- a Wifi access point supporting RADIUS authentication. This setup presented was tested with Ubiquity UniFi access points and UniFi Network Controller software (no relationship whatsoever between this project and Ubiquiti)
-- a RADIUS server and PKI (this project) running on a Docker server
+- a Wifi access point supporting RADIUS authentication. The setup presented was tested with Ubiquity UniFi access points and UniFi Network Controller software (no relationship whatsoever between this project and Ubiquiti)
+- a RADIUS server and PKI (this project) running on a Docker server with docker-compose
+
+# Getting started
+- Start with a functioning Wifi network using WPA2 preshared key
+- Clone this repository to a Docker server with docker-compose installed
+- Execute the following commands as root (or use sudo) in the main directory of this repository.
+- Run `./scripts/init.sh` to create some directories and create the `.env` file.
+- Edit the `.env` file in the main directory. Necessary adjustments are documented in the comments in this file.
+- Do a `docker-compose build` followed by a `docker-compose up -d` (this can take some time).
+- Run `./scripts/start_management.sh`. This gives a root shell within a directory with some management scripts.
+- Run `./manageclients.sh` to get help to register Radius clients. A Radius client is e.g. a Wifi access point.
+- Register your Radius clients. Don't forget to take note of the password.
+- Create a WPA2 enterprise Wifi network and register the Radius server by IP in the Network controller software. Enable usage of VLAN's supplied by the Radius server if you need this.
+- Close the shell using exit (or Ctrl+d).  The radius service will restart.
+
+# Adding your first device using EAP-TLS 
+- Execute the following commands as root (or use sudo) in the main directory of this repository.
+- Run `./scripts/start_management.sh`. This gives a root shell within a directory with some management scripts.
+- Run `./manageusers.sh` to get help to create the key/certificate pair for your device.
+- Generate the key/certificate pair. Take note of the password and close the shell.
+- In the provision directory you can find the Certificate Authority certificate (ca.der) and the password secured key/certificate file (<name>.p12). Copy these to your device using an USB stick or e.g. `scp`. 
