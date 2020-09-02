@@ -7,7 +7,7 @@ ENV SCRIPTDIR=/scripts TZ=${TZ} RADIUS_HOST=${RADIUS_HOST}
 
 RUN apk upgrade --update && \
     apk add --no-cache freeradius freeradius-eap openssl make \
-                       tzdata wpa_supplicant patch ca-certificates
+                       tzdata patch wpa_supplicant ca-certificates freeradius-utils
 
 COPY scripts ${SCRIPTDIR}
 WORKDIR ${SCRIPTDIR}

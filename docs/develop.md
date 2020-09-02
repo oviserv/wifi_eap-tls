@@ -6,12 +6,20 @@ To start with an clean environment, execute the follow actions
 - Remove all files from ./provision
 - Give command `docker volume rm freeradius_raddb`
 - Give command `docker-compose build`
+- Or run ./scripts/clean.sh in directory where docker-compose.yml resides
 
 To start a rootshell in an unitialized environment:
 - Comment out `entrypoint: "./managecerts.sh"` for prepare_radiusd in docker-compose.yml
 - `docker-compose run prepare_radiusd sh` This command drops you in a root shell ready to run all scripts.
 - Start with `./managecerts.sh` to initialize.
 
+Test tooling
+A few tools can be used to test and debug FreeRadius:
+- radclient (in freeradius-utils package)
+- eapol_test (in wpa_supplicant package)
+
+Sometimes the c_rehash tool is mentioned. This tool is available in the ca-certificates package. Enable these packages in the Dockerfile
+ 
 To create patches from the configuration files
 - Open a rootshell in an unitialized environment (see before)
 - Copy the configuration file to <config name>.orig if it doesn't already exists
