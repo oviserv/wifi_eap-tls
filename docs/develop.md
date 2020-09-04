@@ -1,4 +1,4 @@
-To start with an clean environment, execute the follow actions
+To start with a clean environment, execute the follow actions
 - This cleans all data! Make backups first!
 - Go to the directory with the docker-compose.yml file
 - Give command `docker-compose down --rmi all`
@@ -17,8 +17,18 @@ Test tooling
 A few tools can be used to test and debug FreeRadius:
 - radclient (in freeradius-utils package)
 - eapol_test (in wpa_supplicant package)
+- Under the test directory the tls.conf configuration file is available. To use this file
+  - Copy the file to the provision directory
+  - Start the Freeradius server in foreground mode (docker-compose up)
+  - Switch to a second shell
+  - Run `./scripts/start_management.sh` in the directory where docker-compose.yml resides
+  - Use `./manageclients.sh` to add the default testing client
+  - Use `./manageusers.sh` to create a test user.
+  - Close the shell and reopen. The radiusd container will restart
+  - Go to the `/provision` directory and edit tls.conf
+  - Run the eapol_test command as shown in the comments in tls.conf
 
-Sometimes the c_rehash tool is mentioned. This tool is available in the ca-certificates package. Enable these packages in the Dockerfile
+Sometimes the c_rehash tool is mentioned. This tool is available in the ca-certificates package.
  
 To create patches from the configuration files
 - Open a rootshell in an unitialized environment (see before)
