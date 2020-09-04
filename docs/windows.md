@@ -3,20 +3,18 @@ This document describes the necessary steps to connect a Windows 10 machine to a
 To start with you need the CA certificate (ca.der), key/certificate pair (in a *.p12 file) and the accompanying password generated with the manageusers.sh in your FreeRadius installation.
 
 ## Install CA certificate
-- Log in as a user with administrative rights
+- Log in as an user with administrative rights
 - Right click ca.der and select 'Install Certificate'
 - Choose as Store Location 'Local Machine' and click next
 - Select 'Place all certificates in the following store' and browse to the 'Trusted Root Certification Authorities' certificate store. Click next and finish
 
 ## Install user certificate and key
-- Log in as a user with administrative rights
 - Right click the file with certificate and key (*.p12) and choose 'Install PFX'
 - Choose as Store Location 'Local Machine' and click next (2x)
 - Enter the password for the private key and click next
 - Select 'Place all certificates in the following store' and browse to the 'Personal' certificate store. Click next and finish
 
 ## Configure Wifi network
-- Log in as a user with administrative rights
 - Open the 'Network and Sharing Center'
 - Click 'Set up a new connection or network'
 - Select 'Manually connect to a wireless network' and click next
