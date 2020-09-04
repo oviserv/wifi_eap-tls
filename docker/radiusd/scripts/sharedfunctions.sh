@@ -9,6 +9,7 @@ set_value() {
 # Parameters: valuename ($1) value($2), file($3)
     /bin/sed -Ei "s/(${1}[[:space:]]*=)([[:space:]][[:print:]]*)/\1 ${2}/" ${3}
 }
+
 set_value_in_section() {
 # Parameters: sectionname ($1) valuename ($2) value($3), file($4)
     /bin/sed -Ei "/\[[[:space:]]*${1}[[:space:]]*\]/,/${2}/{s/(${2}[[:space:]]*=)([[:space:]][[:print:]]*)/\1 ${3}/}" ${4}
