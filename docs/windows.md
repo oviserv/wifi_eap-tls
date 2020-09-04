@@ -29,4 +29,4 @@ To start with you need the CA certificate (ca.der), key/certificate pair (in a *
 - Select 'Certificate Issuer' and select your CA from the list (Starts with 'Wifi Certificate Authority' followed by a date code. Click 'Ok'
 - Deselect 'Use simple certificate selection (Recommended)'
 - Select under Trusted Root Certification Authorities once again your CA from the list and click 'Ok' (2x) followed by 'Close'
-- You can now connect to your Wifi network
+- You can connect to your Wifi network now
