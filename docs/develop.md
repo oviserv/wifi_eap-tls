@@ -1,11 +1,11 @@
 To start with a clean environment, execute the follow actions
 - This cleans all data! Make backups first!
 - Go to the directory with the docker-compose.yml file
-- Give command `docker-compose down --rmi all`
+- Run `docker-compose down --rmi all`
 - Remove all backups from ./backup (or move them to another location)
 - Remove all files from ./provision
-- Give command `docker volume rm freeradius_raddb`
-- Give command `docker-compose build`
+- Run `docker volume rm freeradius_raddb`
+- Run `docker-compose build`
 - Or run ./scripts/clean.sh in directory where docker-compose.yml resides
 
 To start a rootshell in an unitialized environment:
@@ -15,7 +15,7 @@ To start a rootshell in an unitialized environment:
 
 Test tooling
 A few tools can be used to test and debug FreeRadius:
-- radclient (in freeradius-utils package)
+- radclient (in freeradius-utils package). The simple authentication methods that radclient supports are disabled in this configuration. So you can use radclient to test if these methods are disabled indeed.
 - eapol_test (in wpa_supplicant package)
 - Under the test directory the tls.conf configuration file is available. To use this file
   - Copy the file to the provision directory
