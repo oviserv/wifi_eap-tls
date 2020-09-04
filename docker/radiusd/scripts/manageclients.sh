@@ -50,24 +50,6 @@ client ${CLIENT} {
 EOF
 }
 
-#    set_value "default_days" ${VALIDITY} ${CLIENTCONFIG}
-#    set_value "input_password" ${PASSWORD} ${CLIENTCONFIG}
-#    set_value "output_password" ${PASSWORD} ${CLIENTCONFIG}
-#    set_value_in_section "client" "emailAddress" ${USER} ${CLIENTCONFIG}
-#    set_value_in_section "client" "commonName" ${USER} ${CLIENTCONFIG}
-#    cd ${CERTSDIR}
-#    /usr/bin/make client.pem
-#    /bin/cp client.p12 "/provision/${USER}.p12"
-#    /usr/bin/printf "${USER} ${EMAIL} ${PASSWORD}\n" >> ${PASSWORDFILE}
-#    /usr/bin/printf "The password for user ${USER} is: \n"
-#    /usr/bin/printf "${PASSWORD}\n"
-#    if [ ! "${VLAN}" = "NONE" ]; then
-#        sed -i "1s/^/        Tunnel-Type = VLAN,\n        Tunnel-Medium-Type = IEEE-802,\n        Tunnel-Private-Group-ID = \"10\"\n\n/" ${USERFILE}
-#    fi
-#    sed -i "1s/^/${USER}\n/" ${USERFILE}
-#}
-
 if [ "$1" = "add" ]; then
     add $2 $3 $4
 fi
-
