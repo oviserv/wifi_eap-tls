@@ -24,5 +24,5 @@ A complete setup consists of the following elements:
 - Run `./scripts/start_management.sh`. This gives a root shell within a directory with some management scripts.
 - Run `./manageusers.sh` to get help to create the key/certificate pair for your device.
 - Generate the key/certificate pair. Take note of the password and close the shell.
-- In the provision directory you can find the Certificate Authority certificate (ca.der) and the password secured key/certificate file (<name>.p12). Copy these to your device using an USB stick or e.g. `scp`
+- In the provision directory you can find the Certificate Authority certificate (ca.der) and the password secured key/certificate file (*.p12). Copy these to your device using an USB stick or e.g. `scp`
 - Use these files to configure Wifi with EAP-TLS authentication. See for example [Windows instructions](docs/windows.md)
