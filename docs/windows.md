@@ -10,7 +10,7 @@ To start with you need the CA certificate (ca.der), key/certificate pair (in a *
 
 ## Install user certificate and key
 - Log in as a user with administrative rights
-- Right click the file with certificate and key (p12 extension) and choose 'Install PFX'
+- Right click the file with certificate and key (*.p12) and choose 'Install PFX'
 - Choose as Store Location 'Local Machine' and click next (2x)
 - Enter the password for the private key and click next
 - Select 'Place all certificates in the following store' and browse to the 'Personal' certificate store. Click next and finish
