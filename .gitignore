@@ -2,3 +2,5 @@
 backup/*
 provision/*
 
+# Prevent commit of backup files
+*.gz
