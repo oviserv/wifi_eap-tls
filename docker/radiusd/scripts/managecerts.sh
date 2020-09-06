@@ -56,6 +56,12 @@ configure_uri_crl() {
 
     set_value crlDistributionPoints "URI:http:\/\/${RADIUS_HOST}\/wifi_ca.crl" ${1}
 }
+
+copy_ca_to_provision() {
+    /bin/cp ${CACERT} ${PROVISIONDIR}
+    /bin/chmod 444 /${PROVISIONDIR}/ca.der
+}
+
 # Check if init is necessary
 if [ -f "${INITFINISHED}" ]; then
     /usr/bin/printf "Initialization already performed. Nothing to do.\n"
@@ -73,6 +79,7 @@ if [ -f "${BACKUPFILE}" ]; then
                                       etc/raddb/mods-config/files/authorize 
     PWDSRV=$(get_password ${SRVCONFIG})
     set_password_in_eap_config ${PWDSRV}
+    copy_ca_to_provision
     exit 0
 fi
 
@@ -108,12 +115,10 @@ set_generic_attributes certificate_authority ${CACONFIG}
 /usr/bin/make ca.pem
 /usr/bin/make ca.der
 /bin/chmod 400 ca.key
-/bin/cp ${CACERT} ${PROVISIONDIR}
-/bin/chmod 444 /${PROVISIONDIR}/ca.der
+copy_ca_to_provision
 # Remove execute from bootstrap script to prevent running by accident
 /bin/chmod 444 bootstrap
 generate_crl ${CAPASSWORD}
-
 
 # Configure the lifetime of the server certificate
 set_lifetime ${CA_LIFETIME} ${CRL_LIFETIME} ${SRVCONFIG}
