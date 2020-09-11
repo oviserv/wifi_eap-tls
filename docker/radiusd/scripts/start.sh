@@ -8,4 +8,9 @@ source ${SCRIPTDIR}/config.sh
 while [ ! -f "${INITFINISHED}" ]; do sleep 1; done
 
 cd /etc/raddb
-exec radiusd -X
+
+if [ -z "$DEBUG" ]; then
+    exec radiusd -f
+else 
+    exec radiusd -X
+fi

@@ -38,6 +38,7 @@ services:
       - CA_LIFETIME
       - CRL_LIFETIME
       - HOST_CERT_LIFETIME
+      - DEBUG
     user: "radius:radius"
     restart: always
     networks:
