@@ -76,10 +76,11 @@ if [ -f "${BACKUPFILE}" ]; then
     # Restore manually if necessary
     /bin/tar -C / -xzvf ${BACKUPFILE} etc/raddb/certs/ \
                                       etc/raddb/clients.conf \
-                                      etc/raddb/mods-config/files/authorize 
+                                      etc/raddb/mods-config/files/authorize \
+                                      provision/
     PWDSRV=$(get_password ${SRVCONFIG})
     set_password_in_eap_config ${PWDSRV}
-    copy_ca_to_provision
+#    copy_ca_to_provision
     exit 0
 fi
 

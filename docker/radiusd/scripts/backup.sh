@@ -9,6 +9,6 @@ umask 337
 DATECODE=$(/bin/date "+%Y%m%d")
 FILE=${BACKUPDIR}/${DATECODE}_backup.tar.gz
 
-/bin/tar -czvf ${FILE} ${RADIUSDIR} 
+/bin/tar -czvf ${FILE} ${RADIUSDIR} ${PROVISIONDIR}
 
 
