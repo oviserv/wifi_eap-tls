@@ -1,5 +1,5 @@
 # Android 10 EAP-TLS Wifi installation
-This document describes the necessary steps to connect an Android 10 smartphone to a Wifi network protected with EAP-TLS
+This document describes the necessary steps to connect an Android 10 smartphone to a Wifi network protected with EAP-TLS.
 To start with you need the CA certificate (ca.der), key/certificate pair (in a *.p12 file) and the accompanying password generated with the manageusers.sh in your FreeRadius installation.
 
 ## Import certificates
