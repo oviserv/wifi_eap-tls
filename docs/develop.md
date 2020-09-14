@@ -1,5 +1,5 @@
 ## Freeradius in debug mode
-To start Freeradius in debug mode (radiusd -X) uncomment the debug environment variable in the .env file
+To start Freeradius in debug mode (radiusd -X) uncomment the debug environment variable in the .env file. Analyze the output on the following page: https://networkradius.com/freeradius-debugging/
 
 ## To start with a clean environment, execute the follow actions
 This cleans all data! Make backups first!
