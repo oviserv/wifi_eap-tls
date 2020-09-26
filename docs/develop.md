@@ -42,3 +42,12 @@ Sometimes the c_rehash tool is mentioned. This tool is available in the ca-certi
 - Move the file to the patch dir in the GIT repository in the host system
 - Check in bootstrap.sh if the file is patched. If not, add a patch command
 - The patch will be applied on the next build of the container
+
+## Notes
+- Usernames communicated by Windows 10 have the format `host/<username>`. To strip the `host` prefix from the username, put the follow statement in the realm module (this should be tested further):
+```
+realm host {
+        format = prefix
+        delimiter = "/"
+}
+```
