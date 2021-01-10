@@ -66,7 +66,7 @@ add() {
     /usr/bin/printf "The password for user ${USER} is: \n"
     /usr/bin/printf "${PASSWORD}\n"
     if [ ! "${VLAN}" = "NONE" ]; then
-        sed -i "1s/^/        Tunnel-Type = VLAN,\n        Tunnel-Medium-Type = IEEE-802,\n        Tunnel-Private-Group-ID = \"10\"\n\n/" ${USERFILE}
+        sed -i "1s/^/        Tunnel-Type = VLAN,\n        Tunnel-Medium-Type = IEEE-802,\n        Tunnel-Private-Group-ID = \"${VLAN}\"\n\n/" ${USERFILE}
         sed -i "1s/^/${USER}\n/" ${USERFILE}
     else
         sed -i "1s/^/${USER}\n\n/" ${USERFILE}
