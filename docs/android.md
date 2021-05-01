@@ -1,5 +1,5 @@
 # Android 10 & 11 EAP-TLS Wifi installation
-This document describes the necessary steps to connect an Android 10 smartphone to a Wifi network protected with EAP-TLS.
+This document describes the necessary steps to connect an Android 10 or 11 smartphone to a Wifi network protected with EAP-TLS.
 To start with you need the CA certificate (ca.der), key/certificate pair (in a *.p12 file) and the accompanying password generated with the manageusers.sh in your FreeRadius installation. For Android 11 you also need the `commonName` of the Radius server certificate. Steps to view this `commonName`:
 - Run `./scripts/start_management.sh` to get a root shell in your Freeradius installation
 - Run `cat /etc/raddb/certs/server.cnf` and find the `commonName` in the output. The `commonName` has the form of "Radius server \<some datecode\>".
