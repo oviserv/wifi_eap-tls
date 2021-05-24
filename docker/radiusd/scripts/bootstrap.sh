@@ -10,6 +10,9 @@ chown root:radius start.sh config.sh sharedfunctions.sh && chmod 550 start.sh co
 /bin/cp -a ${RADIUSDIR} /root/ 
 
 # Patch configuration files
+[ ! -d ${PATCHDIR} ] &&
+  echo "FreeRadius version ${FRVERSION} not supported" && exit 1
+
 /usr/bin/patch -b ${RADIUSCONF} < ${PATCHDIR}/radiusd.conf.patch
 /usr/bin/patch -b ${CHECKEAPTLS} < ${PATCHDIR}/check-eap-tls.patch
 /usr/bin/patch -b ${DEFAULTSITE} < ${PATCHDIR}/default.patch
