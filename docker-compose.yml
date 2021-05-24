@@ -13,6 +13,7 @@ services:
       args:
         - TZ
         - RADIUS_HOST
+        - APKREPO_EDGE
     environment:
       - RADIUS_IP
       - COUNTRYNAME
