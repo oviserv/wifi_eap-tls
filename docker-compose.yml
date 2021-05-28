@@ -14,6 +14,7 @@ services:
         - TZ
         - RADIUS_HOST
         - APKREPO_EDGE
+        - NO_PREPARE
     environment:
       - RADIUS_IP
       - COUNTRYNAME

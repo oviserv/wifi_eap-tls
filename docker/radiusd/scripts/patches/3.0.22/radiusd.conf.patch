@@ -1,0 +1,13 @@
+--- radiusd.conf.orig
++++ radiusd.conf
+@@ -599,8 +599,8 @@
+ #
+ #  allowed values: {no, yes}
+ #
+-proxy_requests  = yes
+-$INCLUDE proxy.conf
++proxy_requests  = no
++#$INCLUDE proxy.conf
+ 
+ 
+ # CLIENTS CONFIGURATION

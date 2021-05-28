@@ -3,8 +3,10 @@ FROM alpine:3
 ARG TZ
 ARG RADIUS_HOST
 ARG APKREPO_EDGE
+ARG NO_PREPARE
 
-ENV SCRIPTDIR=/scripts TZ=${TZ} RADIUS_HOST=${RADIUS_HOST}
+ENV SCRIPTDIR=/scripts TZ=${TZ} RADIUS_HOST=${RADIUS_HOST} \
+    NO_PREPARE=${NO_PREPARE}
 
 RUN apk upgrade --update && \
     apk add --no-cache ${APKREPO_EDGE} freeradius freeradius-eap \

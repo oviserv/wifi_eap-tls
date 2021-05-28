@@ -3,6 +3,10 @@
 set -e
 source config.sh
 
+# Exit if environment variable NO_PREPARE is set
+[ ! -z "${NO_PREPARE}" ] && echo "NO_PREPARE is set, cancelling bootstrap" && \
+	exit 0
+
 chmod 500 managecerts.sh backup.sh manageusers.sh 
 chown root:radius start.sh config.sh sharedfunctions.sh && chmod 550 start.sh config.sh sharedfunctions.sh
 
@@ -11,7 +15,7 @@ chown root:radius start.sh config.sh sharedfunctions.sh && chmod 550 start.sh co
 
 # Patch configuration files
 [ ! -d ${PATCHDIR} ] &&
-  echo "FreeRadius version ${FRVERSION} not supported" && exit 1
+  echo "FreeRadius version ${FRVERSION} is not supported" && exit 1
 
 /usr/bin/patch -b ${RADIUSCONF} < ${PATCHDIR}/radiusd.conf.patch
 /usr/bin/patch -b ${CHECKEAPTLS} < ${PATCHDIR}/check-eap-tls.patch
