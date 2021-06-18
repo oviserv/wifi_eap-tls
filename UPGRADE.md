@@ -6,7 +6,7 @@ Steps to upgrade to a new version:
 - Store both files in the ./backup directory in a safe place. The backup directory will be wiped!!!
 - Remove the current service by running `./scripts/clean.sh`
 - Rename the repository and do a `git clone` again to get a fresh copy.
-- Enter the repository and checkout the version you need, e.g.: `git checkout v3.0.22`
+- Enter the repository and checkout the version you need, e.g.: `git checkout v3.0.23`
 - Run `./scripts/init.sh` to create some directories and create the .env file.
 - Copy the `env.patch` into the repository and place the backup file in `./backup`
 - Customize the .env file by running: `patch -b .env < env.patch`
