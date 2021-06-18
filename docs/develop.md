@@ -37,7 +37,7 @@ Sometimes the c_rehash tool is mentioned. This tool is available in the ca-certi
 - Open a rootshell in an unitialized environment (see before)
 - Copy the configuration file to <config name>.orig if it doesn't already exists
 - Edit the configuration file
-- Get a diff with: diff -u <full path to config>.orig <full path to config> > /backup/<config name>.patch
+- Get a diff with: `diff -u <full path to config>.orig <full path to config> > /backup/<config name>.patch`
 - Watch out for passwords embedded in the configuration files
 - Move the file to the patch dir in the GIT repository in the host system
 - Check in bootstrap.sh if the file is patched. If not, add a patch command
