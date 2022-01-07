@@ -1,0 +1,13 @@
+--- /etc/raddb/radiusd.conf.orig
++++ /etc/raddb/radiusd.conf
+@@ -609,8 +609,8 @@
+ #
+ #  allowed values: {no, yes}
+ #
+-proxy_requests  = yes
+-$INCLUDE proxy.conf
++proxy_requests  = no
++#$INCLUDE proxy.conf
+ 
+ 
+ # CLIENTS CONFIGURATION
