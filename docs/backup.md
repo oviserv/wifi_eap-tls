@@ -11,4 +11,4 @@ This creates a backup file in the backup directory. The file name of the backup 
 
 # Restore of FreeRadius configuration
 
-The configuration is restored automatically when at container startup the docker volume is not populated and a backup file is available in the backup directory.The original .env file should also be placed in the root of the root of this repository. The most recent backup is selected. The provision directory is also restoredi. This data is also available in the `/etc/raddb/certs` directory. Passwords are kept in `passwords.txt`
+The configuration is restored automatically when at container startup the docker volume is not populated and a backup file is available in the backup directory. The original .env file should also be placed in the root of the root of this repository. The most recent backup is selected. The provision directory is also restored. This data is also available in the `/etc/raddb/certs` directory. Passwords are kept in `passwords.txt`
