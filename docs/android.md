@@ -18,5 +18,5 @@ To start with you need the CA certificate (ca.der), key/certificate pair (in a *
 - Select the CA-certificate and Usercertificate that you have imported
 - For Domain, enter the commonName of the Radius server certificate.
 - Enter 'anonymous' as Identity and click 'Connect' 
+- Remove the certificates from Google Drive
 
-Remove the certificates from Google Drive
