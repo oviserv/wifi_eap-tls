@@ -10,7 +10,7 @@ fi
 /usr/bin/printf "This will remove all your configuration data,\n"
 /usr/bin/printf "including your Certificate Authority!\n"
 /usr/bin/printf "Are you sure (y|n)? "
-read ANSWER
+read -r ANSWER
 
 # The '#' performs substring removal
 # See bash string manipulation

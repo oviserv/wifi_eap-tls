@@ -24,6 +24,7 @@ CACERTPEM=${CERTSDIR}/ca.pem
 CACRLPEM=${CERTSDIR}/wifi_ca_crl.pem
 CACRL=${CERTSDIR}/wifi_ca.crl
 CACERT=${CERTSDIR}/ca.der
+CAPROVISION=${PROVISIONDIR}/ca.der
 SRVCONFIG=${CERTSDIR}/server.cnf
 CLIENTCONFIG=${CERTSDIR}/client.cnf
 XPEXT=${CERTSDIR}/xpextensions
@@ -32,7 +33,8 @@ EAPCONFIG=${RADIUSDIR}/mods-available/eap
 PASSWORDFILE=${CERTSDIR}/passwords.txt
 CERTINDEX=${CERTSDIR}/index.txt
 USERFILE=${RADIUSDIR}/mods-config/files/authorize
-DATECODE=$(/bin/date "+%y%m%d")
+RADIUSSERVERFILE=${CERTSDIR}/RadiusServerName.txt
+RSPROVISION=${PROVISIONDIR}/RadiusServerName.txt
 # Calculate wildcard domain from host name of Radius server
 # Example: if host name is radius.intra.lan the wild card domain is *.intra.lan
-WCD=$(printf ${RADIUS_HOST}|sed -E "s/[^/.]*(\..*)/*\1/")
+WCD=$(printf '%s' "${RADIUS_HOST}" | sed -E "s/[^/.]*(\..*)/*\1/")

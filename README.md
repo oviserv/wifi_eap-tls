@@ -1,4 +1,4 @@
-# Secure Wifi: WPA2 Enterprise with EAP-TLS for home usage
+# Secure Wifi: WPA2 Enterprise with EAP-TLS
 Wifi is nearly everywhere and adequate security is important. User friendly and secure alternative to the password based solution is WPA2 Enterprise. One of the options within WPA2 Enterprise is EAP-TLS. This authentication protocol uses X.509 certificates to make sure that a user connects to an authentic Wifi network. The client side certificate guarantees to the Wifi network the authenticity of the client. This repository gives some scripts to create and manage some of the key components for an EAP-TLS setup: a RADIUS server and a Public Key Infrastructure (PKI) for managing a Certificate Authority (CA) and managing X.509 certificates. For the RADIUS server the FreeRadius opensource project is used. The complexity of configuring FreeRadius is taken away by using a few wrapper scripts. The RADIUS server is run using Docker and docker-compose.
 
 A complete setup consists of the following elements:
@@ -12,7 +12,8 @@ A complete setup consists of the following elements:
 - Execute the following commands as root (or use sudo) in the main directory of this repository.
 - Run `./scripts/init.sh` to create some directories and create the `.env` file.
 - Edit the `.env` file in the main directory. Necessary adjustments are documented in the comments in this file.
-- Do a `docker-compose build` followed by a `docker-compose up -d` (this can take some time).
+- Do a `docker-compose build` followed by a `docker-compose up` (this can take some time).
+- Wait until the initialization is finished. End with `Ctrl+c` and restart with `docker-compose up -d`
 - Run `./scripts/start_management.sh`. This gives a root shell within a directory with some management scripts.
 - Run `./manageclients.sh` to get help to register Radius clients. A Radius client is e.g. a Wifi access point.
 - Register your Radius clients. Don't forget to take note of the password.

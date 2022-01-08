@@ -4,8 +4,8 @@
 # These are e.g. Wifi access points that can query the RADIUS server
 
 set -e
-source ${SCRIPTDIR}/config.sh
-source ${SCRIPTDIR}/sharedfunctions.sh
+. "${SCRIPTDIR}/config.sh"
+. "${SCRIPTDIR}/sharedfunctions.sh"
 
 if [ "$#" -le 1 ]; then
     /usr/bin/printf "Add client: manageclients.sh add <name> <ip address or range (in CIDR notation> <password>\n"
@@ -35,7 +35,7 @@ add() {
     /usr/bin/printf "The password for client(s) ${CLIENT} is: \n"
     /usr/bin/printf "${PASSWORD}\n"
 
-    /bin/cat << EOF >> ${CLIENTSCONF}    
+    /bin/cat << EOF >> "${CLIENTSCONF}"
 client ${CLIENT} {
         ipaddr = ${IP}
         proto = udp
@@ -51,5 +51,5 @@ EOF
 }
 
 if [ "$1" = "add" ]; then
-    add $2 $3 $4
+    add "$2" "$3" "$4"
 fi

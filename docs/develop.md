@@ -12,8 +12,9 @@ This cleans all data! Make backups first!
 - Or run ./scripts/clean.sh in directory where docker-compose.yml resides
 
 ## To start a rootshell in an unitialized environment:
-- Comment out `entrypoint: "./managecerts.sh"` for prepare_radiusd in docker-compose.yml
-- `docker-compose run prepare_radiusd sh` This command drops you in a root shell ready to run all scripts.
+- Set `NO_PREPARE=yes` in the `.env` file
+- Do a `docker-compose` build
+- The command `docker-compose run --entrypoint sh prepare_radiusd` drops you in a shell ready to run all scripts.
 - Start with `./managecerts.sh` to initialize.
 
 ## Test tooling

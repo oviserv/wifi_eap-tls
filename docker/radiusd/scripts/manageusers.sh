@@ -3,11 +3,11 @@
 # Add or remove accounts for EAP-TLS authentication
 
 set -e
-source ${SCRIPTDIR}/config.sh
-source ${SCRIPTDIR}/sharedfunctions.sh
+. "${SCRIPTDIR}/config.sh"
+. "${SCRIPTDIR}/sharedfunctions.sh"
 umask 0027
 
-cd ${CERTSDIR}
+cd "${CERTSDIR}" || exit 1
 
 if [ "$#" -le 1 ]; then
     /usr/bin/printf "Add user: manageusers.sh add <name> <email> <validity in days> <vlan> <password>\n"
@@ -54,46 +54,47 @@ add() {
         PASSWORD=$5
     fi
 
-    set_value "default_days" ${VALIDITY} ${CLIENTCONFIG}
-    set_value "input_password" ${PASSWORD} ${CLIENTCONFIG}
-    set_value "output_password" ${PASSWORD} ${CLIENTCONFIG}
-    set_value_in_section "client" "emailAddress" ${EMAIL} ${CLIENTCONFIG}
-    set_value_in_section "client" "commonName" ${USER} ${CLIENTCONFIG}
-    cd ${CERTSDIR}
+    set_value "default_days" "${VALIDITY}" "${CLIENTCONFIG}"
+    set_value "input_password" "${PASSWORD}" "${CLIENTCONFIG}"
+    set_value "output_password" "${PASSWORD}" "${CLIENTCONFIG}"
+    set_value_in_section "client" "emailAddress" "${EMAIL}" "${CLIENTCONFIG}"
+    set_value_in_section "client" "commonName" "${USER}" "${CLIENTCONFIG}"
+    cd "${CERTSDIR}" || exit 1
     /usr/bin/make client.pem
     /bin/cp client.p12 "/provision/${USER}.p12"
-    /usr/bin/printf "${USER} ${EMAIL} ${PASSWORD}\n" >> ${PASSWORDFILE}
+    /usr/bin/printf "${USER} ${EMAIL} ${PASSWORD}\n" >> "${PASSWORDFILE}"
     /usr/bin/printf "The password for user ${USER} is: \n"
     /usr/bin/printf "${PASSWORD}\n"
     if [ ! "${VLAN}" = "NONE" ]; then
-        sed -i "1s/^/        Tunnel-Type = VLAN,\n        Tunnel-Medium-Type = IEEE-802,\n        Tunnel-Private-Group-ID = \"${VLAN}\"\n\n/" ${USERFILE}
-        sed -i "1s/^/${USER}\n/" ${USERFILE}
+        sed -i "1s/^/        Tunnel-Type = VLAN,\n        Tunnel-Medium-Type = IEEE-802,\n        Tunnel-Private-Group-ID = \"${VLAN}\"\n\n/" "${USERFILE}"
+        sed -i "1s/^/${USER}\n/" "${USERFILE}"
     else
-        sed -i "1s/^/${USER}\n\n/" ${USERFILE}
+        sed -i "1s/^/${USER}\n\n/" "${USERFILE}"
     fi
+    copy_generic_to_provision
 }
 
 remove() {
     USER=$1
-    SERIAL=$(grep "^V.*\/CN=${USER}\/" ${CERTINDEX}|awk '{print $3}')
+    SERIAL=$(grep "^V.*\/CN=${USER}\/" "${CERTINDEX}" | awk '{print $3}')
     if [ -z "${SERIAL}" ]; then
         /usr/bin/printf "User ${USER} is not found\n"
         exit 0
     else
-        /bin/cp ${USERFILE} ${USERFILE}.backup
-        /bin/cp ${PASSWORDFILE} ${PASSWORDFILE}.backup
+        /bin/cp "${USERFILE}" "${USERFILE}".backup
+        /bin/cp "${PASSWORDFILE}" "${PASSWORDFILE}".backup
         # Following statement adapted from Makefile in certs dir
-        PASSWORD_CA=$(grep output_password ${CACONFIG} | sed 's/.*=//;s/^ *//')
-        /usr/bin/openssl ca -revoke ${SERIAL}.pem -keyfile ca.key -cert ca.pem -config ./ca.cnf -key ${PASSWORD_CA}
-        /usr/bin/awk "BEGIN{flag=1}/^${USER}$/{flag=0}/^$/{flag=1}flag" ${USERFILE}.backup|sed 'N;/^\n$/D;P;D;' > ${USERFILE}
-        grep -v "^${USER} " ${PASSWORDFILE}.backup > ${PASSWORDFILE}
-        generate_crl ${PASSWORD_CA}
+        PASSWORD_CA=$(grep output_password "${CACONFIG}" | sed 's/.*=//;s/^ *//')
+        /usr/bin/openssl ca -revoke "${SERIAL}".pem -keyfile ca.key -cert ca.pem -config ./ca.cnf -key "${PASSWORD_CA}"
+        /usr/bin/awk "BEGIN{flag=1}/^${USER}$/{flag=0}/^$/{flag=1}flag" "${USERFILE}".backup|sed 'N;/^\n$/D;P;D;' > "${USERFILE}"
+        grep -v "^${USER} " "${PASSWORDFILE}.backup" > "${PASSWORDFILE}"
+        generate_crl "${PASSWORD_CA}"
     fi
 }
 
 if [ "$1" = "add" ]; then
-    add $2 $3 $4 $5 $6
+    add "$2" "$3" "$4" "$5" "$6"
 elif [ "$1" = "remove" ]; then
-    remove $2
+    remove "$2"
 fi
 

@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 
 set -e
-source ${SCRIPTDIR}/config.sh
+. "${SCRIPTDIR}/config.sh"
 
 # Start FreeRadius
 
