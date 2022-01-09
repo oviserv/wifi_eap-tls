@@ -34,7 +34,7 @@ copy_generic_to_provision() {
 
     # Reconstruct file with Radius server name for configs generated
     # with older vesions
-    if [ -f "${RADIUSSERVERFILE}" ]
+    if [ ! -f "${RADIUSSERVERFILE}" ]
     then
        /bin/grep "Radius server" "${SRVCONFIG}" | \
          /usr/bin/awk -F '"' '{print $2}' > "${RADIUSSERVERFILE}"
