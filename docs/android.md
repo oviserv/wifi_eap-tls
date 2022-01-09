@@ -4,8 +4,8 @@ To start with you need the CA certificate (ca.der), key/certificate pair (in a *
 
 ## Import certificates
 - Move ca.der and key/certificate file (*.p12) in provision dir to Google Drive (e.g. use scp to copy files to PC followed by upload in browser)
-- On the smartphone, go to Settings, Security, Advanced, Encryption and data, Install from SD-Card.
-- For Android 11, choose "Wifi-certificate"
+- On the smartphone, go to Settings, Security, Advanced, Encryption and data, Install from SD-Card. Between devices naming and location can differ. On recent Samsung devices search for 'Install from device storage (Install certificates from storage)' under 'Other security settings'.
+- For Android 11, choose "Wi-Fi-certificate" for the ca.der and the key/certificate file (*.p12).
 - Go to My Drive and select ca.der. Then choose Wifi and answer questions. As certificate name, choose e.g. 'Wifica' 
 - Go to Install from SD-Card (choose "Wifi-certificate for Android 11 again) followed by My Drive. Select *.p12 and type the password. Processing can take very long.
 - Enter a certificate name (e.g. Wifiusercert) and select Wifi for usage. Finish.
