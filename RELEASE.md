@@ -1,4 +1,4 @@
-[v3.0.25p1]
+[v3.0.25-p2]
 Some minor changes:
 - Bump Alpine linux version to 3.16, FreeRADIUS version stays on v3.0.25
 - Fix execute rights of some scripts in this repository and set correctly in container
