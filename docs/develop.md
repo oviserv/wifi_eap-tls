@@ -21,16 +21,7 @@ This cleans all data! Make backups first!
 A few tools can be used to test and debug FreeRadius:
 - radclient (in freeradius-utils package). The simple authentication methods that radclient supports are disabled in this configuration. So you can use radclient to test if these methods are disabled indeed.
 - eapol_test (in wpa_supplicant package)
-- Under the test directory the tls.conf configuration file is available. To use this file
-  - Copy the file to the provision directory
-  - Start the Freeradius server in foreground mode (docker-compose up)
-  - Switch to a second shell
-  - Run `./scripts/start_management.sh` in the directory where docker-compose.yml resides
-  - Use `./manageclients.sh` to add the default testing client
-  - Use `./manageusers.sh` to create a test user.
-  - Close the shell and reopen. The radiusd container will restart
-  - Go to the `/provision` directory and edit tls.conf
-  - Run the eapol_test command as shown in the comments in tls.conf
+- Under the test directory the tls.conf configuration file is available. To use this file, read the comment inside.
 
 Sometimes the c_rehash tool is mentioned. This tool is available in the ca-certificates package.
  
