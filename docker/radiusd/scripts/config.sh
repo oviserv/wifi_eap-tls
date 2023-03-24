@@ -30,7 +30,6 @@ CLIENTCONFIG=${CERTSDIR}/client.cnf
 XPEXT=${CERTSDIR}/xpextensions
 INITFINISHED=${CERTSDIR}/init_finished
 EAPCONFIG=${RADIUSDIR}/mods-available/eap
-PASSWORDFILE=${CERTSDIR}/passwords.txt
 CERTINDEX=${CERTSDIR}/index.txt
 USERFILE=${RADIUSDIR}/mods-config/files/authorize
 RADIUSSERVERFILE=${CERTSDIR}/RadiusServerName.txt

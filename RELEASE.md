@@ -1,3 +1,7 @@
+[v3.0.26 preliminary]
+Security is tightened:
+- Passwords are no longer stored in `/etc/raddb/certs/passwords.txt`. For upgraded installations it is strongly advised to remove `/etc/raddb/certs/passwords.txt` and `/etc/raddb/certs/passwords.txt.backup`. The container can be entered running the `./scripts/start_management.sh` from the root of this repository.
+
 [v3.0.25-p2]
 Some minor changes:
 - Bump Alpine linux version to 3.16, FreeRADIUS version stays on v3.0.25

@@ -62,7 +62,6 @@ add() {
     cd "${CERTSDIR}" || exit 1
     /usr/bin/make client.pem
     /bin/cp client.p12 "/provision/${USER}.p12"
-    /usr/bin/printf "${USER} ${EMAIL} ${PASSWORD}\n" >> "${PASSWORDFILE}"
     /usr/bin/printf "The password for user ${USER} is: \n"
     /usr/bin/printf "${PASSWORD}\n"
     if [ ! "${VLAN}" = "NONE" ]; then
@@ -72,6 +71,9 @@ add() {
         sed -i "1s/^/${USER}\n\n/" "${USERFILE}"
     fi
     copy_generic_to_provision
+    # Remove password from client config file
+    set_value "input_password" "CHANGEME" "${CLIENTCONFIG}"
+    set_value "output_password" "CHANGEME" "${CLIENTCONFIG}"
 }
 
 remove() {
@@ -82,12 +84,10 @@ remove() {
         exit 0
     else
         /bin/cp "${USERFILE}" "${USERFILE}".backup
-        /bin/cp "${PASSWORDFILE}" "${PASSWORDFILE}".backup
         # Following statement adapted from Makefile in certs dir
         PASSWORD_CA=$(grep output_password "${CACONFIG}" | sed 's/.*=//;s/^ *//')
         /usr/bin/openssl ca -revoke "${SERIAL}".pem -keyfile ca.key -cert ca.pem -config ./ca.cnf -key "${PASSWORD_CA}"
         /usr/bin/awk "BEGIN{flag=1}/^${USER}$/{flag=0}/^$/{flag=1}flag" "${USERFILE}".backup|sed 'N;/^\n$/D;P;D;' > "${USERFILE}"
-        grep -v "^${USER} " "${PASSWORDFILE}.backup" > "${PASSWORDFILE}"
         generate_crl "${PASSWORD_CA}"
     fi
 }
