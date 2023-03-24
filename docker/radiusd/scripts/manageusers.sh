@@ -60,8 +60,8 @@ add() {
     set_value_in_section "client" "emailAddress" "${EMAIL}" "${CLIENTCONFIG}"
     set_value_in_section "client" "commonName" "${USER}" "${CLIENTCONFIG}"
     cd "${CERTSDIR}" || exit 1
-    /usr/bin/make client.pem
-    /bin/cp client.p12 "/provision/${USER}.p12"
+    /usr/bin/make client.p12
+    /bin/mv client.p12 "/provision/${USER}.p12"
     /usr/bin/printf "The password for user ${USER} is: \n"
     /usr/bin/printf "${PASSWORD}\n"
     if [ ! "${VLAN}" = "NONE" ]; then
@@ -71,9 +71,10 @@ add() {
         sed -i "1s/^/${USER}\n\n/" "${USERFILE}"
     fi
     copy_generic_to_provision
-    # Remove password from client config file
+    # Remove intermidiary files and password from client config file
     set_value "input_password" "CHANGEME" "${CLIENTCONFIG}"
     set_value "output_password" "CHANGEME" "${CLIENTCONFIG}"
+    /bin/rm ${CERTSDIR}/client.csr ${CERTSDIR}/client.crt ${CERTSDIR}/client.key
 }
 
 remove() {

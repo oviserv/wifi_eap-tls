@@ -1,6 +1,8 @@
 [v3.0.26 preliminary]
+
 Security is tightened:
 - Passwords are no longer stored in `/etc/raddb/certs/passwords.txt`. For upgraded installations it is strongly advised to remove `/etc/raddb/certs/passwords.txt` and `/etc/raddb/certs/passwords.txt.backup`. The container can be entered running the `./scripts/start_management.sh` from the root of this repository.
+- Certificates and (encrypted) private keys for clients are no longer stored in the Radius certs directory. Old certificates and keys (dating from before this change) can be removed manually from `/etc/raddb/certs`. Watch out for removing the CA and Radius server information which remains necessary.
 
 [v3.0.25-p2]
 Some minor changes:
