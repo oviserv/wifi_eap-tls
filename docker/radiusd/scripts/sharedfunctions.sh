@@ -15,6 +15,11 @@ set_value_in_section() {
     /bin/sed -Ei "/\[[[:space:]]*${1}[[:space:]]*\]/,/${2}/{s/(${2}[[:space:]]*=)([[:space:]][[:print:]]*)/\1 ${3}/}" "${4}"
 }
 
+add_value_in_section() {
+# Parameters: sectionname ($1) valuename ($2) value($3), file($4)
+    /bin/sed -Ei "/\[[[:space:]]*${1}[[:space:]]*\]/a ${2} = ${3}" "${4}"
+}
+
 generate_crl() {
 # Generate new CRL (combined with CA certificate)
 # Parameters: password_ca ($1)
