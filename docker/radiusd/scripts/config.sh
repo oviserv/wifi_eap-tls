@@ -36,4 +36,6 @@ RADIUSSERVERFILE=${CERTSDIR}/RadiusServerName.txt
 RSPROVISION=${PROVISIONDIR}/RadiusServerName.txt
 # Calculate wildcard domain from host name of Radius server
 # Example: if host name is radius.intra.lan the wild card domain is *.intra.lan
-WCD=$(printf '%s' "${RADIUS_HOST}" | sed -E "s/[^/.]*(\..*)/*\1/")
+DOMAIN=$(printf '%s' "${RADIUS_HOST}" | sed -E "s/[^/.]*(\..*)/\1/")
+WCD="*${DOMAIN}"
+

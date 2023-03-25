@@ -90,6 +90,12 @@ cd "${CERTSDIR}"
 # Configure the Certificate Authority.
 set_lifetime "${CA_LIFETIME}" "${CRL_LIFETIME}" "${CACONFIG}"
 
+# Configure the keyUsage and restrict domain
+add_value_in_section v3_ca "keyUsage\t\t" "critical, keyCertSign, cRLSign" \
+    "${CACONFIG}"
+add_value_in_section v3_ca nameConstraints "critical, permitted;DNS:${DOMAIN}" \
+    "${CACONFIG}"
+
 # Configure URI for CRL
 # According to Freeradius documentation this CRL should exist
 # This can be combined with this Radius server
