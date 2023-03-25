@@ -7,7 +7,7 @@ This cleans all data! Make backups first!
 - Run `docker-compose down --rmi all`
 - Remove all backups from ./backup (or move them to another location)
 - Remove all files from ./provision
-- Run `docker volume rm freeradius_raddb`
+- Run `docker volume rm wifi_eap-tls_raddb`
 - Run `docker-compose build`
 - Or run ./scripts/clean.sh in directory where docker-compose.yml resides
 
