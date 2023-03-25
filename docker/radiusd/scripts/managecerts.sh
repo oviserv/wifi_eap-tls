@@ -154,10 +154,6 @@ copy_generic_to_provision
 # Start with an empty file containing one empty line
 /bin/echo "" > "${USERFILE}"
 
-# Configure passwords file
-/bin/touch "${PASSWORDFILE}"
-/bin/chmod 600 "${PASSWORDFILE}"
-
 # Signal that init finished succesfully
 /bin/touch "${INITFINISHED}"
 
