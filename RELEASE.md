@@ -1,4 +1,6 @@
-[v3.0.26 preliminary]
+[v3.0.26]
+
+Update to FreeRadius 3.0.26
 
 Security is tightened:
 - Passwords are no longer stored in `/etc/raddb/certs/passwords.txt`. For upgraded installations it is strongly advised to remove `/etc/raddb/certs/passwords.txt` and `/etc/raddb/certs/passwords.txt.backup`. The container can be entered running the `./scripts/start_management.sh` from the root of this repository.
