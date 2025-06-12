@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 
 # Variables in this file are configured from the .env file
-# via the docker-compose.yml file and from the Dockerfile.
+# via the compose.yaml file and from the Dockerfile.
 set -e
 
 RADIUSDIR=/etc/raddb

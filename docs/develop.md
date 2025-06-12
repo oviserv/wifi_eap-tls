@@ -3,18 +3,18 @@ To start Freeradius in debug mode (radiusd -X) uncomment the debug environment v
 
 ## To start with a clean environment, execute the follow actions
 This cleans all data! Make backups first!
-- Go to the directory with the docker-compose.yml file
-- Run `docker-compose down --rmi all`
+- Go to the directory with the compose.yaml file
+- Run `docker compose down --rmi all`
 - Remove all backups from ./backup (or move them to another location)
 - Remove all files from ./provision
 - Run `docker volume rm wifi_eap-tls_raddb`
-- Run `docker-compose build`
-- Or run ./scripts/clean.sh in directory where docker-compose.yml resides
+- Run `docker compose build`
+- Or run ./scripts/clean.sh in directory where compose.yaml resides
 
 ## To start a rootshell in an unitialized environment:
 - Set `NO_PREPARE=yes` in the `.env` file
-- Do a `docker-compose` build
-- The command `docker-compose run --entrypoint sh prepare_radiusd` drops you in a shell ready to run all scripts.
+- Do a `docker compose` build
+- The command `docker compose run --entrypoint sh prepare_radiusd` drops you in a shell ready to run all scripts.
 - Start with `./managecerts.sh` to initialize.
 
 ## Test tooling

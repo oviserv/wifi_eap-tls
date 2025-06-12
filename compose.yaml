@@ -1,8 +1,10 @@
-version: "3"
-
 networks:
   radiusnet:
     external: false
+
+volumes:
+  raddb:
+    driver: local
 
 services:
   prepare_radiusd:
@@ -22,7 +24,6 @@ services:
       - CA_LIFETIME
       - CRL_LIFETIME
       - HOST_CERT_LIFETIME
-    restart: "no"
     entrypoint: "./managecerts.sh"
     volumes:
       - ./backup:/backup
@@ -52,8 +53,3 @@ services:
       - ./backup:/backup
       - ./provision:/provision      
       - raddb:/etc/raddb
-
-volumes:
-  raddb:
-    driver: local
-

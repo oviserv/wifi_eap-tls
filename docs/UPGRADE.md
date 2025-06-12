@@ -11,7 +11,7 @@ Steps to upgrade to a new version:
 - Copy the `env.patch` into the repository and place the backup file in `./backup`
 - Customize the .env file by running: `patch -b .env < env.patch`
 - Check the `.env` and the `.env.rej` file (if it exists) to see if configuration has succeeded.
-- Do a `docker-compose build` followed by a `docker-compose up -d`
+- Do a `docker compose build` followed by a `docker compose up -d`
 - The FreeRADIUS server should be operational again.
 - Remove the backup and the env.patch file
 - Do a `docker image prune -a` to remove unused images (Read the warning!)

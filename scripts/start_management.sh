@@ -1,10 +1,10 @@
 #!/usr/bin/env sh
 
-DOCKERCOMPOSEFILE=${PWD}/docker-compose.yml
+DOCKERCOMPOSEFILE=${PWD}/compose.yaml
 if [ ! -f "${DOCKERCOMPOSEFILE}" ]; then
-    /usr/bin/printf "Run from directory where docker-compose.yml resides.\n\n"
+    /usr/bin/printf "Run from directory where compose.yaml resides.\n\n"
     exit 1
 fi
 
-docker-compose exec --user="0" radiusd sh
-docker-compose restart radiusd
+docker compose exec --user="0" radiusd sh
+docker compose restart radiusd
