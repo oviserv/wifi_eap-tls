@@ -9,6 +9,7 @@ fi
 /usr/bin/printf "WARNING WARNING WARNING WARNING WARNING\n"
 /usr/bin/printf "This will remove all your configuration data,\n"
 /usr/bin/printf "including your Certificate Authority!\n"
+/usr/bin/printf "this also removes unused containers, networks and images\n"
 /usr/bin/printf "Are you sure (y|n)? "
 read -r ANSWER
 
@@ -16,6 +17,7 @@ read -r ANSWER
 # See bash string manipulation
 if [ "${ANSWER}" != "${ANSWER#[Yy]}" ] ;then
     /usr/bin/docker compose down --rmi all
+    /usr/bin/docker system prune -a -f
     /bin/rm -rf ./backup/*
     /bin/rm -rf ./provision/*
     /usr/bin/docker volume rm wifi_eap-tls_raddb
