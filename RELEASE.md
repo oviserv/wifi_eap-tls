@@ -1,8 +1,8 @@
 [v3.0.27]
 
 - Update to FreeRadius 3.0.27 and Alpine linux 3.22
-- Modernized use of docker compose
-- Added an option to the test config for testing TLS 1.3 (default off)
+- Modernized use of docker compose. Main difference is that the 'docker compose' command is used provided by newer versions of docker. This replaces the use of the old 'docker-compose' command. To upgrade first make a backup in the current environment following the instructions in UPGRADE.md under docs. From step 7 on a newer version of docker providing the 'docker compose' command should be made available. 
+- Added an option to the test config for testing TLS 1.3 (default off). This is for future use
 
 [v3.0.26]
 
