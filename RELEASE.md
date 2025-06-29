@@ -1,3 +1,9 @@
+[v3.0.27]
+
+- Update to FreeRadius 3.0.27 and Alpine linux 3.22
+- Modernized use of docker compose
+- Added an option to the test config for testing TLS 1.3 (default off)
+
 [v3.0.26]
 
 Update to FreeRadius 3.0.26
